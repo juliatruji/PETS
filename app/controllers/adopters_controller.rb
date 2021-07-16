@@ -27,8 +27,6 @@ class AdoptersController < ActionController::Base
   end
 
   def update
-    byebug
-    
     if @adopter.update(permit_params)
       render json: {
         status: 'success',
