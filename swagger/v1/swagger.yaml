@@ -64,7 +64,7 @@ paths:
                 adopter[dni]:
                   type: string
                   description: Dni
-                adopter[addres]:
+                adopter[address]:
                   type: string
                   description: Dirección
                 adopter[cel]:
@@ -124,21 +124,154 @@ paths:
             schema:
               type: object
               properties:
-                adopter[name]:
-                  type: string
-                  description: 'Nombre '
-                adopter[dni]:
-                  type: string
-                  description: Dni
-                adopter[addres]:
-                  type: string
-                  description: Dirección
-                adopter[cel]:
-                  type: string
-                  description: Celular
-                adopter[age]:
+                adopter:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Nombre
+                    dni:
+                      type: string
+                      description: Dni
+                    address:
+                      type: string
+                      description: Direccion
+                    cel:
+                      type: string
+                      description: cel
+                    age:
+                      type: integer
+                      description: Edad
+  "/adoptions":
+    get:
+      summary: Lista de adopciones
+      tags:
+      - Adopciones
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Inicial'
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Final'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de adopcciones
+          headers:
+            Per-page:
+              type: integer
+              description: Total de elementos por página
+            Total:
+              type: integer
+              description: Total de elementos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/adoption"
+    post:
+      summary: Crear adopcion
+      tags:
+      - Adopciones
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adopcion creada
+        '422':
+          description: Error al crear adopcion
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                adoption[date]:
+                  type: date
+                  description: 'Fecha de adopcion '
+                adoption[ped_id]:
                   type: integer
-                  description: Edad
+                  description: id perro
+                adoption[admin_id]:
+                  type: integer
+                  description: id administrador
+                adoption[adopter_id]:
+                  type: integer
+                  description: id adoptante
+  "/adoptions/{id}":
+    get:
+      summary: Detalle de la adopcion
+      tags:
+      - Adopciones
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adopcion encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/adoption"
+        '404':
+          description: Adopcion no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
+  "/adoption/{id}":
+    patch:
+      summary: Actualizar adopcion
+      tags:
+      - Adopciones
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adopcion actualizado
+        '422':
+          description: Error al actualizar adopcion
+        '404':
+          description: adopcion no encontrado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adoption[date]:
+                  type: date
+                  description: 'Fecha de adopcion '
+                adoption[ped_id]:
+                  type: integer
+                  description: id perro
+                adoption[admin_id]:
+                  type: integer
+                  description: id administrador
+                adoption[adopter_id]:
+                  type: integer
+                  description: id adoptante
   "/pets":
     get:
       summary: Lista de perros
@@ -408,7 +541,7 @@ paths:
           description: Cita al veterinario no encontrado
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -528,5 +661,28 @@ components:
           type: string
           format: date-time
           description: Fecha de actualización
+      required:
+      - id
+    adoption:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID
+        date:
+          type: string
+          description: Fecha de adopcion
+        created_at:
+          type: string
+          format: date-time
+          description: Fecha de creación
+        updated_at:
+          type: string
+          format: date-time
+          description: Fecha de actualización
+        pet:
+          "$ref": "#/components/schemas/pet"
+        adopter:
+          "$ref": "#/components/schemas/adopter"
       required:
       - id

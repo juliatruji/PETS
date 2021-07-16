@@ -41,7 +41,7 @@ class VeterinaryAppointmentsController < ActionController::Base
   end
 
   def permit_params
-    params.require(:veterinary_appointment).permit(:id,
+    params.require(:veterinary_appointment).permit(
                   :image,
                   :control_type,
                   :pet_id)

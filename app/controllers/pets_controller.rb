@@ -41,7 +41,7 @@ class PetsController < ActionController::Base
   end
 
   def permit_params
-    params.require(:pet).permit(:id,
+    params.require(:pet).permit(
                   :name,
                   :race,
                   :gender,

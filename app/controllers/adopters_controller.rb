@@ -27,6 +27,8 @@ class AdoptersController < ActionController::Base
   end
 
   def update
+    byebug
+    
     if @adopter.update(permit_params)
       render json: {
         status: 'success',
@@ -41,7 +43,7 @@ class AdoptersController < ActionController::Base
   end
 
   def permit_params
-    params.require(:adopter).permit(:id,
+    params.require(:adopter).permit(
                   :name,
                   :dni,
                   :address,

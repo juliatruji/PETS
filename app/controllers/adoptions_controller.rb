@@ -41,10 +41,11 @@ class AdoptionsController < ActionController::Base
   end
 
   def permit_params
-    params.require(:veterinary_appointment).permit(:id,
-                  :image,
-                  :control_type,
-                  :pet_id)
+    params.require(:adoption).permit(
+                  :date,
+                  :ped_id,
+                  :admin_id,
+                  :adopter_id)
   end
 
   def find_veterinary_appointment

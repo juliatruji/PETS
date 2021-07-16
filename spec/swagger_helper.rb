@@ -43,7 +43,8 @@ RSpec.configure do |config|
         schemas: {
           veterinary_appointment: VeterinaryAppointmentSchema::OBJECT,
           adopter: AdopterSchema::OBJECT,
-          pet: PetSchema::OBJECT
+          pet: PetSchema::OBJECT,
+          adoption: AdoptionSchema::OBJECT
         }
       }
     }

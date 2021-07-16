@@ -80,7 +80,7 @@ RSpec.describe 'veterinary_appointments', type: :request do
   path '/veterinary_appointments/{id}' do
     patch 'Actualizar Cita al veterinario' do
       tags 'Citas al veterinario'
-      consumes 'application/json'
+      consumes 'multipart/form-data'
       parameter name: :id, in: :path, type: :string
       parameter name: :veterinary_appointment, in: :body, schema: {
         type: :object,

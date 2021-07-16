@@ -15,4 +15,6 @@
 #  updated_at      :datetime         not null
 #
 class Pet < ApplicationRecord
+  has_many :adoption, dependent: :destroy
+  has_many :veterinary_appointment, dependent: :destroy
 end
