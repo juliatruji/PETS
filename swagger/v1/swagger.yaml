@@ -1,0 +1,532 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/adopters":
+    get:
+      summary: Lista de adoptantes
+      tags:
+      - Adoptantes
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Inicial'
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Final'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de adoptantes
+          headers:
+            Per-page:
+              type: integer
+              description: Total de elementos por página
+            Total:
+              type: integer
+              description: Total de elementos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/adopter"
+    post:
+      summary: Crear adoptante
+      tags:
+      - Adoptantes
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adoptante creada
+        '422':
+          description: Error al crear Adoptante
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                adopter[name]:
+                  type: string
+                  description: 'Nombre '
+                adopter[dni]:
+                  type: string
+                  description: Dni
+                adopter[addres]:
+                  type: string
+                  description: Dirección
+                adopter[cel]:
+                  type: string
+                  description: Celular
+                adopter[age]:
+                  type: integer
+                  description: Edad
+  "/adopters/{id}":
+    get:
+      summary: Detalle del adoptante
+      tags:
+      - Adoptantes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adoptante encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/adopter"
+        '404':
+          description: Adoptante no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
+    patch:
+      summary: Actualizar Adoptante
+      tags:
+      - Adoptantes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adoptante actualizado
+        '422':
+          description: Error al actualizar adoptante
+        '404':
+          description: Adoptante no encontrado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adopter[name]:
+                  type: string
+                  description: 'Nombre '
+                adopter[dni]:
+                  type: string
+                  description: Dni
+                adopter[addres]:
+                  type: string
+                  description: Dirección
+                adopter[cel]:
+                  type: string
+                  description: Celular
+                adopter[age]:
+                  type: integer
+                  description: Edad
+  "/pets":
+    get:
+      summary: Lista de perros
+      tags:
+      - Perros
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Inicial'
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Final'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de perros
+          headers:
+            Per-page:
+              type: integer
+              description: Total de elementos por página
+            Total:
+              type: integer
+              description: Total de elementos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/pet"
+    post:
+      summary: Crear perro
+      tags:
+      - Perros
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Perro creada
+        '422':
+          description: Error al crear Perro
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                pet[name]:
+                  type: string
+                  description: 'Nombre '
+                pet[race]:
+                  type: string
+                  description: Raza
+                pet[gender]:
+                  type: string
+                  description: Sexo
+                pet[color]:
+                  type: string
+                  description: Color
+                pet[sterilized]:
+                  type: boolean
+                  description: Esterilizado?
+                pet[size]:
+                  type: string
+                  description: Tamaño
+                pet[image]:
+                  type: string
+                  format: binary
+                  description: Imágen del perro
+                pet[adoption_status]:
+                  type: boolean
+                  description: Adoptado?
+  "/pets/{id}":
+    get:
+      summary: Detalle del perro
+      tags:
+      - Perros
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Perro encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/pet"
+        '404':
+          description: Perro no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
+    patch:
+      summary: Actualizar Perro
+      tags:
+      - Perros
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Perro actualizado
+        '422':
+          description: Error al actualizar perro
+        '404':
+          description: Perro no encontrado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pet[name]:
+                  type: string
+                  description: 'Nombre '
+                pet[race]:
+                  type: string
+                  description: Raza
+                pet[gender]:
+                  type: string
+                  description: Sexo
+                pet[color]:
+                  type: string
+                  description: Color
+                pet[sterilized]:
+                  type: boolean
+                  description: Esterilizado?
+                pet[size]:
+                  type: string
+                  description: Tamaño
+                pet[image]:
+                  type: string
+                  format: binary
+                  description: Imágen del perro
+                pet[adoption_status]:
+                  type: boolean
+                  description: Adoptado?
+  "/veterinary_appointments":
+    get:
+      summary: Lista de citas al veterinario
+      tags:
+      - Citas al veterinario
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Inicial'
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+        description: 'Rango: Fecha Final'
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de citas al veterinario
+          headers:
+            Per-page:
+              type: integer
+              description: Total de elementos por página
+            Total:
+              type: integer
+              description: Total de elementos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/veterinary_appointment"
+    post:
+      summary: Crear cita al veterinario
+      tags:
+      - Citas al veterinario
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Cita veterinaria creada
+        '422':
+          description: Error al crear Cita al veterinario
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                veterinary_appointment[image]:
+                  type: string
+                  format: binary
+                  description: Imágen de cita
+                veterinary_appointment[control_type]:
+                  type: string
+                  description: Tipo de cita
+                veterinary_appointment[pet_id]:
+                  type: integer
+                  description: ID del perro
+                veterinary_appointment[description]:
+                  type: string
+                  description: Descripción
+  "/veterinary_appointments/{id}":
+    get:
+      summary: Detalle de la cita al veterinario
+      tags:
+      - Citas al veterinario
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Cita al veterinario encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/veterinary_appointment"
+        '404':
+          description: Cita al veterinario no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
+    patch:
+      summary: Actualizar Cita al veterinario
+      tags:
+      - Citas al veterinario
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Cita al vetrinario actualizado
+        '422':
+          description: Error al actualizar la cita al veterinario
+        '404':
+          description: Cita al veterinario no encontrado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                veterinary_appointment[image]:
+                  type: string
+                  format: binary
+                  description: Imágen de cita
+                veterinary_appointment[control_type]:
+                  type: string
+                  description: Tipo de cita
+                veterinary_appointment[pet_id]:
+                  type: integer
+                  description: ID del perro
+                veterinary_appointment[description]:
+                  type: string
+                  description: Descripción
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    veterinary_appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID de la cita al veterinario
+        image:
+          type: string
+          description: Imágen de la cita
+        control_type:
+          type: string
+          description: Tipo de cita
+        created_at:
+          type: string
+          format: date-time
+          description: Fecha de creación
+        updated_at:
+          type: string
+          format: date-time
+          description: Fecha de actualización
+      required:
+      - id
+    adopter:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID del Adoptante
+        name:
+          type: string
+          description: Nombre del adoptante
+        dni:
+          type: string
+          description: DNI del adoptante
+        address:
+          type: string
+          description: Dirección del adoptante
+        cel:
+          type: string
+          description: Celular del adoptante
+        age:
+          type: integer
+          description: Edad
+        created_at:
+          type: string
+          format: date-time
+          description: Fecha de creación
+        updated_at:
+          type: string
+          format: date-time
+          description: Fecha de actualización
+      required:
+      - id
+    pet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID
+        name:
+          type: string
+          description: Nombre
+        race:
+          type: string
+          description: Raza
+        gender:
+          type: string
+          description: Sexo
+        color:
+          type: string
+          description: Color
+        sterilized:
+          type: boolean
+          description: "¿Esterilizado?"
+        size:
+          type: string
+          description: Tamaño
+        image:
+          type: string
+          description: Imagen
+        adoption_status:
+          type: boolean
+          description: "¿Adoptado?"
+        created_at:
+          type: string
+          format: date-time
+          description: Fecha de creación
+        updated_at:
+          type: string
+          format: date-time
+          description: Fecha de actualización
+      required:
+      - id
