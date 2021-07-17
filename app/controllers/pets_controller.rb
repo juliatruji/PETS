@@ -12,8 +12,6 @@ class PetsController < ActionController::Base
   end
 
   def create
-    byebug
-    
     pet = Pet.new(permit_params)
     if pet.save
       render json: {
