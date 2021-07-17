@@ -87,6 +87,7 @@ test:
 #
 production:
   <<: *default
-  database: project_pets_adoption_production
-  username: project_pets_adoption
-  password: <%= ENV['PROJECT_PETS_ADOPTION_DATABASE_PASSWORD'] %>
+  host: batyr.db.elephantsql.com
+  database: datapets
+  username: mmffklhm 
+  password: xowEA8D0_Y79A0mqJhSYWXazHLBjVwed
