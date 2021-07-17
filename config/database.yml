@@ -86,7 +86,15 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: project_pets_adoption_production
-  username: project_pets_adoption
-  password: <%= ENV['PROJECT_PETS_ADOPTION_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['DB_HOST']%>
+  database: <%= ENV['DB_NAME']%>
+  username: <%= ENV['DB_USER']%> 
+  password: <%= ENV['DB_PASS']%>
+  # adapter: postgresql
+  # encoding: unicode
+  # host: ec2-23-23-164-251.compute-1.amazonaws.com
+  # database: d2gdqrq031jl5k
+  # username: xiujpodaawbehl 
+  # password: bff0ed50643e96d866c9d63db433e7924d8ce20a8c226ba46e3ce4729216e887
