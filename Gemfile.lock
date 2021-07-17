@@ -216,6 +216,10 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.4)
@@ -301,6 +305,8 @@ DEPENDENCIES
   pundit (~> 2.0)
   rack-cors
   rails (~> 6.1.3, >= 6.1.3.1)
+  rake
+  rspec
   rspec-rails (~> 3.5)
   rswag
   rswag-api (~> 2.3, >= 2.3.1)

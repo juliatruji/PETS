@@ -34,6 +34,8 @@ gem 'sentry-raven', '~> 3.0'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rake'
+gem 'rspec'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
