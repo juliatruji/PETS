@@ -12,8 +12,6 @@ class AdoptionsController < ActionController::Base
   end
 
   def create
-    byebug
-
     adoption = Adoption.new(permit_params)
     if adoption.save
       render json: {
