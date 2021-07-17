@@ -82,13 +82,18 @@ RSpec.describe 'adoptions', type: :request do
       tags 'Adopciones'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
-      parameter name: :adoption, in: :body, schema: {
+      parameter in: :body, schema: {
         type: :object,
         properties: {
-          'adoption[date]': { type: :date, description: 'Fecha de adopcion ' },
-          'adoption[ped_id]': { type: :integer, description: 'id perro' },
-          'adoption[admin_id]': { type: :integer, description: 'id administrador' },
-          'adoption[adopter_id]': { type: :integer, description: 'id adoptante' }
+          adoption: {
+            type: :object,
+            properties: {
+              date: { type: :date, description: 'Fecha' },
+              pet_id: { type: :integer, description: 'Id del perro' },
+              admin_id: { type: :integer, description: 'id del administrador' },
+              adopter_id: { type: :integer, description: 'id del adoptante' }
+            }
+          }
         }
       }
       security [bearerAuth: []]

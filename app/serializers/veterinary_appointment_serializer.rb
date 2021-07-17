@@ -1,6 +1,7 @@
 class VeterinaryAppointmentSerializer < ActiveModel::Serializer
   attributes :id,
              :image,
+             :date,
              :control_type,
              :pet_id,
              :created_at,

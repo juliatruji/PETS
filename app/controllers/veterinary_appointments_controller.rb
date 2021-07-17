@@ -43,6 +43,7 @@ class VeterinaryAppointmentsController < ActionController::Base
   def permit_params
     params.require(:veterinary_appointment).permit(
                   :image,
+                  :date,
                   :control_type,
                   :pet_id)
   end

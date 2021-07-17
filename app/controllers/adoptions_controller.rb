@@ -12,6 +12,8 @@ class AdoptionsController < ActionController::Base
   end
 
   def create
+    byebug
+
     adoption = Adoption.new(permit_params)
     if adoption.save
       render json: {
@@ -43,7 +45,7 @@ class AdoptionsController < ActionController::Base
   def permit_params
     params.require(:adoption).permit(
                   :date,
-                  :ped_id,
+                  :pet_id,
                   :admin_id,
                   :adopter_id)
   end

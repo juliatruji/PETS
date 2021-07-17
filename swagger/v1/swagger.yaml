@@ -260,18 +260,21 @@ paths:
             schema:
               type: object
               properties:
-                adoption[date]:
-                  type: date
-                  description: 'Fecha de adopcion '
-                adoption[ped_id]:
-                  type: integer
-                  description: id perro
-                adoption[admin_id]:
-                  type: integer
-                  description: id administrador
-                adoption[adopter_id]:
-                  type: integer
-                  description: id adoptante
+                adoption:
+                  type: object
+                  properties:
+                    date:
+                      type: date
+                      description: Fecha
+                    pet_id:
+                      type: integer
+                      description: Id del perro
+                    admin_id:
+                      type: integer
+                      description: id del administrador
+                    adopter_id:
+                      type: integer
+                      description: id del adoptante
   "/pets":
     get:
       summary: Lista de perros
@@ -402,31 +405,33 @@ paths:
             schema:
               type: object
               properties:
-                pet[name]:
-                  type: string
-                  description: 'Nombre '
-                pet[race]:
-                  type: string
-                  description: Raza
-                pet[gender]:
-                  type: string
-                  description: Sexo
-                pet[color]:
-                  type: string
-                  description: Color
-                pet[sterilized]:
-                  type: boolean
-                  description: Esterilizado?
-                pet[size]:
-                  type: string
-                  description: Tamaño
-                pet[image]:
-                  type: string
-                  format: binary
-                  description: Imágen del perro
-                pet[adoption_status]:
-                  type: boolean
-                  description: Adoptado?
+                pet:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Nombre
+                    race:
+                      type: string
+                      description: Raza
+                    gender:
+                      type: string
+                      description: Sexo
+                    color:
+                      type: string
+                      description: Color
+                    sterilized:
+                      type: boolean
+                      description: "¿Esterilizado?"
+                    size:
+                      type: string
+                      description: Tamaño
+                    image:
+                      type: string
+                      description: Imagen
+                    adoption_status:
+                      type: boolean
+                      description: "¿Adoptado?"
   "/veterinary_appointments":
     get:
       summary: Lista de citas al veterinario
@@ -541,23 +546,25 @@ paths:
           description: Cita al veterinario no encontrado
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                veterinary_appointment[image]:
-                  type: string
-                  format: binary
-                  description: Imágen de cita
-                veterinary_appointment[control_type]:
-                  type: string
-                  description: Tipo de cita
-                veterinary_appointment[pet_id]:
-                  type: integer
-                  description: ID del perro
-                veterinary_appointment[description]:
-                  type: string
-                  description: Descripción
+                veterinary_appointment:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                      description: Imagen
+                    control_type:
+                      type: string
+                      description: Tipo de control
+                    date:
+                      type: date
+                      description: Fecha
+                    pet_id:
+                      type: integer
+                      description: Id del perro
 servers:
 - url: http://{defaultHost}
   variables:

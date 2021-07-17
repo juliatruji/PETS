@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :veterinary_appointments, only: [:index, :create, :update, :show]
   resources :adopters, only: [:index, :create, :update, :show]
   resources :pets, only: [:index, :create, :update, :show]
+  resources :adoptions, only: [:index, :create, :update, :show]
 end
