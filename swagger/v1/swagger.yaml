@@ -561,7 +561,7 @@ paths:
 servers:
 - url: http://localhost:3000
   description: Servidor de Desarrollo
-- url: http://petsamelie.herokuapp.com
+- url: https://petsamelie.herokuapp.com
   description: Servidor de Producción
 components:
   securitySchemes:
