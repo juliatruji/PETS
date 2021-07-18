@@ -1,10 +1,12 @@
 class AdoptersController < BaseController
+  include Rails::Pagination
   before_action :ensure_and_set_current_admin
   before_action :find_adopter, only: [:show, :update]
 
   def index
     adopters = Adopter.all
-    render json: adopters, each_serializer: AdopterSerializer
+    paginate_items = paginate adopters, per_page: params[:per_page]
+    render json: paginate_items, each_serializer: AdopterSerializer
   end
 
   def show

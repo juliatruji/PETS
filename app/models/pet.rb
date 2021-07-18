@@ -16,6 +16,6 @@
 #
 class Pet < ApplicationRecord
   has_many :adoption, dependent: :destroy
-  has_many :veterinary_appointment, dependent: :destroy
+  has_many :veterinary_appointments, dependent: :destroy
   mount_uploader :image, PetUploader
 end

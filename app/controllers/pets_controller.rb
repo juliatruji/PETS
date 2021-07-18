@@ -1,10 +1,12 @@
 class PetsController < BaseController
+  include Rails::Pagination
   before_action :ensure_and_set_current_admin
   before_action :find_pet, only: [:show, :update]
 
   def index
     pets = Pet.all
-    render json: pets, each_serializer: PetSerializer
+    paginate_items = paginate pets, per_page: params[:per_page]
+    render json: paginate_items, each_serializer: PetSerializer
   end
 
   def show

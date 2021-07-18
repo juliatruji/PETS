@@ -1,10 +1,12 @@
 class VeterinaryAppointmentsController < BaseController
+  include Rails::Pagination
   before_action :ensure_and_set_current_admin
   before_action :find_veterinary_appointment, only: [:show, :update]
 
   def index
     veterinary_appointments = VeterinaryAppointment.all
-    render json: veterinary_appointments, each_serializer: VeterinaryAppointmentSerializer
+    paginate_items = paginate veterinary_appointments, per_page: params[:per_page]
+    render json: paginate_items, each_serializer: VeterinaryAppointmentSerializer
   end
 
   def show
