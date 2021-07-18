@@ -496,9 +496,9 @@ paths:
                 veterinary_appointment[pet_id]:
                   type: integer
                   description: ID del perro
-                veterinary_appointment[description]:
-                  type: string
-                  description: Descripción
+                veterinary_appointment[date]:
+                  type: date
+                  description: Fecha de la cita
   "/veterinary_appointments/{id}":
     get:
       summary: Detalle de la cita al veterinario
@@ -561,7 +561,7 @@ paths:
                       description: Tipo de control
                     date:
                       type: date
-                      description: Fecha
+                      description: Tipo de control
                     pet_id:
                       type: integer
                       description: Id del perro
@@ -587,6 +587,9 @@ components:
           type: string
           description: Imágen de la cita
         control_type:
+          type: string
+          description: Tipo de cita
+        date:
           type: string
           description: Tipo de cita
         created_at:

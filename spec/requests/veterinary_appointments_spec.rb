@@ -55,7 +55,7 @@ RSpec.describe 'veterinary_appointments', type: :request do
           'veterinary_appointment[image]': { type: :string, format: 'binary', description: 'Imágen de cita' },
           'veterinary_appointment[control_type]': { type: :string, description: 'Tipo de cita' },
           'veterinary_appointment[pet_id]': { type: :integer, description: 'ID del perro' },
-          'veterinary_appointment[description]': { type: :string, description: 'Descripción' }
+          'veterinary_appointment[date]': { type: :date, description: 'Fecha de la cita' }
         }
       }
       security [bearerAuth: []]
@@ -90,7 +90,7 @@ RSpec.describe 'veterinary_appointments', type: :request do
             properties: {
               image: { type: :string, description: 'Imagen' },
               control_type: { type: :string, description: 'Tipo de control' },
-              date: { type: :date, description: 'Fecha' },
+              date: { type: :date, description: 'Tipo de control' },
               pet_id: { type: :integer, description: 'Id del perro' }
             }
           }

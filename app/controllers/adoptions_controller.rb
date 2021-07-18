@@ -16,21 +16,23 @@ class AdoptionsController < ActionController::Base
     if adoption.save
       render json: {
         status: "success",
-        message: "Adoption created successfully"
-      }, status: :ok
-    else
-      render json: {
-        status: "error",
-        message: "An error occurred while creating adoption"
-      }, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @adoption.update(permit_params)
-      render json: {
-        status: 'success',
-        message: 'Adoption updated successfully'
+        message: "Adoption created successfully",
+        data: ActiveModelSerializers::Adapter::Json.new(AdoptionSerializer.new(adoption)).as_json,
+        }, status: :ok
+      else
+        render json: {
+          status: "error",
+          message: "An error occurred while creating adoption"
+          }, status: :unprocessable_entity
+        end
+      end
+      
+      def update
+        if @adoption.update(permit_params)
+          render json: {
+            status: 'success',
+            message: 'Adoption updated successfully',
+            data: ActiveModelSerializers::Adapter::Json.new(AdoptionSerializer.new(@adoption)).as_json,
       }, status: :ok
     else
       render json: {

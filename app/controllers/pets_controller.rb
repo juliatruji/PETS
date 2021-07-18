@@ -16,7 +16,8 @@ class PetsController < ActionController::Base
     if pet.save
       render json: {
         status: "success",
-        message: "Pet created successfully"
+        message: "Pet created successfully",
+        data: ActiveModelSerializers::Adapter::Json.new(PetSerializer.new(pet)).as_json,
       }, status: :ok
     else
       render json: {
@@ -30,7 +31,8 @@ class PetsController < ActionController::Base
     if @pet.update(permit_params)
       render json: {
         status: 'success',
-        message: 'pet updated successfully'
+        message: 'pet updated successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(PetSerializer.new(@pet)).as_json,
       }, status: :ok
     else
       render json: {

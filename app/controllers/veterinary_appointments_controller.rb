@@ -16,7 +16,8 @@ class VeterinaryAppointmentsController < ActionController::Base
     if veterinary_appointment.save
       render json: {
         status: "success",
-        message: "Pet created successfully"
+        message: "Pet created successfully",
+        data: ActiveModelSerializers::Adapter::Json.new(VeterinaryAppointmentSerializer.new(veterinary_appointment)).as_json,
       }, status: :ok
     else
       render json: {
@@ -31,6 +32,7 @@ class VeterinaryAppointmentsController < ActionController::Base
       render json: {
         status: 'success',
         message: 'pet updated successfully'
+        #data: ActiveModelSerializers::Adapter::Json.new(VeterinaryAppointmentSerializer.new(veterinary_appointment)).as_json,
       }, status: :ok
     else
       render json: {

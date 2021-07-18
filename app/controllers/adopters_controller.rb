@@ -16,7 +16,8 @@ class AdoptersController < ActionController::Base
     if adopter.save
       render json: {
         status: "success",
-        message: "adopter created successfully"
+        message: "adopter created successfully",
+        data: ActiveModelSerializers::Adapter::Json.new(AdopterSerializer.new(adopter)).as_json,
       }, status: :ok
     else
       render json: {
@@ -30,7 +31,8 @@ class AdoptersController < ActionController::Base
     if @adopter.update(permit_params)
       render json: {
         status: 'success',
-        message: 'adopter updated successfully'
+        message: 'adopter updated successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(AdopterSerializer.new(@adopter)).as_json,
       }, status: :ok
     else
       render json: {
