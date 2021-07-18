@@ -1,5 +1,4 @@
 class LoginsController < BaseController
-  skip_before_action :verify_authenticity_token
   def create
     authenticate = Authenticate.new(user_params[:email], user_params[:password]).call
     if authenticate.success?

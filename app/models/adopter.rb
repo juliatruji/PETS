@@ -12,6 +12,6 @@
 #  updated_at :datetime         not null
 #
 class Adopter < ApplicationRecord
-  has_many :adoption, dependent: :destroy
+  has_many :adoptions, dependent: :destroy
 
 end
