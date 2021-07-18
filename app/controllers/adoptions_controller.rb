@@ -1,5 +1,5 @@
-class AdoptionsController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+class AdoptionsController < BaseController
+  before_action :ensure_and_set_current_admin
   before_action :adoption, only: [:show, :update]
 
   def index

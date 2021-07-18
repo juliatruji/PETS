@@ -3,7 +3,6 @@ class CreateAdmins < ActiveRecord::Migration[6.1]
     create_table :admins do |t|
       t.string :name
       t.string :user
-      t.string :password
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

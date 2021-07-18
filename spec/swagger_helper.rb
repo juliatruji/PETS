@@ -44,7 +44,10 @@ RSpec.configure do |config|
           veterinary_appointment: VeterinaryAppointmentSchema::OBJECT,
           adopter: AdopterSchema::OBJECT,
           pet: PetSchema::OBJECT,
-          adoption: AdoptionSchema::OBJECT
+          adoption: AdoptionSchema::OBJECT,
+          admin: AdminSchema::OBJECT,
+          not_found: ErrorsSchema::NOT_FOUND,
+          unprocessable_entity: ErrorsSchema::UNPROCESSABLE_ENTITY,
         }
       }
     }

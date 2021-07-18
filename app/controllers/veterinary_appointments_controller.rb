@@ -1,5 +1,5 @@
-class VeterinaryAppointmentsController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+class VeterinaryAppointmentsController < BaseController
+  before_action :ensure_and_set_current_admin
   before_action :find_veterinary_appointment, only: [:show, :update]
 
   def index

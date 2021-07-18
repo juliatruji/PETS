@@ -1,5 +1,5 @@
-class PetsController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+class PetsController < BaseController
+  before_action :ensure_and_set_current_admin
   before_action :find_pet, only: [:show, :update]
 
   def index
