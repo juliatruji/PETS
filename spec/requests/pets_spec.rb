@@ -84,24 +84,19 @@ RSpec.describe 'pets', type: :request do
   path '/pets/{id}' do
     patch 'Actualizar Perro' do
       tags 'Perros'
-      consumes 'application/json'
       parameter name: :id, in: :path, type: :string
-      parameter in: :body, schema: {
+      consumes 'multipart/form-data'
+      parameter name: :pet, in: :body, schema: {
         type: :object,
         properties: {
-          pet: {
-            type: :object,
-            properties: {
-              name: { type: :string, description: 'Nombre' },
-              race: { type: :string, description: 'Raza' },
-              gender: { type: :string, description: 'Sexo' },
-              color: { type: :string, description: 'Color' },
-              sterilized: { type: :boolean, description: '¿Esterilizado?' },
-              size: { type: :string, description: 'Tamaño' },
-              image: { type: :string, description: 'Imagen' },
-              adoption_status: { type: :boolean, description: '¿Adoptado?' }
-            }
-          }
+          'pet[name]': { type: :string, description: 'Nombre ' },
+          'pet[race]': { type: :string, description: 'Raza' },
+          'pet[gender]': { type: :string, description: 'Sexo' },
+          'pet[color]': { type: :string, description: 'Color' },
+          'pet[sterilized]': { type: :boolean, description: 'Esterilizado?' },
+          'pet[size]': { type: :string, description: 'Tamaño' },
+          'pet[image]': { type: :string, format: 'binary', description: 'Imágen del perro' },
+          'pet[adoption_status]': { type: :boolean, description: 'Adoptado?' }
         }
       }
       security [bearerAuth: []]

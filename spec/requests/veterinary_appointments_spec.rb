@@ -80,20 +80,15 @@ RSpec.describe 'veterinary_appointments', type: :request do
   path '/veterinary_appointments/{id}' do
     patch 'Actualizar Cita al veterinario' do
       tags 'Citas al veterinario'
-      consumes 'application/json'
       parameter name: :id, in: :path, type: :string
-      parameter in: :body, schema: {
+      consumes 'multipart/form-data'
+      parameter name: :veterinary_appointment, in: :body, schema: {
         type: :object,
         properties: {
-          veterinary_appointment: {
-            type: :object,
-            properties: {
-              image: { type: :string, description: 'Imagen' },
-              control_type: { type: :string, description: 'Tipo de control' },
-              date: { type: :date, description: 'Tipo de control' },
-              pet_id: { type: :integer, description: 'Id del perro' }
-            }
-          }
+          'veterinary_appointment[image]': { type: :string, format: 'binary', description: 'Imágen de cita' },
+          'veterinary_appointment[control_type]': { type: :string, description: 'Tipo de cita' },
+          'veterinary_appointment[pet_id]': { type: :integer, description: 'ID del perro' },
+          'veterinary_appointment[date]': { type: :date, description: 'Fecha de la cita' }
         }
       }
       security [bearerAuth: []]

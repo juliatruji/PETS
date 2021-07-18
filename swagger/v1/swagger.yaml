@@ -248,7 +248,7 @@ paths:
                 adoption[date]:
                   type: date
                   description: 'Fecha de adopcion '
-                adoption[ped_id]:
+                adoption[pet_id]:
                   type: integer
                   description: id perro
                 adoption[admin_id]:
@@ -283,7 +283,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found"
-  "/adoption/{id}":
     patch:
       summary: Actualizar adopcion
       tags:
@@ -484,37 +483,35 @@ paths:
           description: Perro no encontrado
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                pet:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: Nombre
-                    race:
-                      type: string
-                      description: Raza
-                    gender:
-                      type: string
-                      description: Sexo
-                    color:
-                      type: string
-                      description: Color
-                    sterilized:
-                      type: boolean
-                      description: "¿Esterilizado?"
-                    size:
-                      type: string
-                      description: Tamaño
-                    image:
-                      type: string
-                      description: Imagen
-                    adoption_status:
-                      type: boolean
-                      description: "¿Adoptado?"
+                pet[name]:
+                  type: string
+                  description: 'Nombre '
+                pet[race]:
+                  type: string
+                  description: Raza
+                pet[gender]:
+                  type: string
+                  description: Sexo
+                pet[color]:
+                  type: string
+                  description: Color
+                pet[sterilized]:
+                  type: boolean
+                  description: Esterilizado?
+                pet[size]:
+                  type: string
+                  description: Tamaño
+                pet[image]:
+                  type: string
+                  format: binary
+                  description: Imágen del perro
+                pet[adoption_status]:
+                  type: boolean
+                  description: Adoptado?
   "/veterinary_appointments":
     get:
       summary: Lista de citas al veterinario
@@ -629,25 +626,23 @@ paths:
           description: Cita al veterinario no encontrado
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                veterinary_appointment:
-                  type: object
-                  properties:
-                    image:
-                      type: string
-                      description: Imagen
-                    control_type:
-                      type: string
-                      description: Tipo de control
-                    date:
-                      type: date
-                      description: Tipo de control
-                    pet_id:
-                      type: integer
-                      description: Id del perro
+                veterinary_appointment[image]:
+                  type: string
+                  format: binary
+                  description: Imágen de cita
+                veterinary_appointment[control_type]:
+                  type: string
+                  description: Tipo de cita
+                veterinary_appointment[pet_id]:
+                  type: integer
+                  description: ID del perro
+                veterinary_appointment[date]:
+                  type: date
+                  description: Fecha de la cita
 servers:
 - url: http://localhost:3000
   description: Servidor de Desarrollo
@@ -683,6 +678,8 @@ components:
           type: string
           format: date-time
           description: Fecha de actualización
+        pet:
+          "$ref": "#/components/schemas/pet"
       required:
       - id
     adopter:

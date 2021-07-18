@@ -53,7 +53,7 @@ RSpec.describe 'adoptions', type: :request do
         type: :object,
         properties: {
           'adoption[date]': { type: :date, description: 'Fecha de adopcion ' },
-          'adoption[ped_id]': { type: :integer, description: 'id perro' },
+          'adoption[pet_id]': { type: :integer, description: 'id perro' },
           'adoption[admin_id]': { type: :integer, description: 'id administrador' },
           'adoption[adopter_id]': { type: :integer, description: 'id adoptante' }
         }
@@ -77,7 +77,7 @@ RSpec.describe 'adoptions', type: :request do
     end
   end
 
-  path '/adoption/{id}' do
+  path '/adoptions/{id}' do
     patch 'Actualizar adopcion' do
       tags 'Adopciones'
       consumes 'application/json'

@@ -3,9 +3,10 @@ class VeterinaryAppointmentSerializer < ActiveModel::Serializer
              :image,
              :date,
              :control_type,
-             :pet_id,
              :created_at,
              :updated_at
+
+  belongs_to :pet, serializer: PetSerializer
   def image
     return nil if object.image.blank?
 

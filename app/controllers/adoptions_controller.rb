@@ -1,6 +1,6 @@
 class AdoptionsController < BaseController
   before_action :ensure_and_set_current_admin
-  before_action :adoption, only: [:show, :update]
+  before_action :find_adoption, only: [:show, :update]
 
   def index
     adoptions = Adoption.all
@@ -50,7 +50,7 @@ class AdoptionsController < BaseController
                   :adopter_id)
   end
 
-  def find_veterinary_appointment
-    @veterinary_appointment = VeterinaryAppointment.find(params[:id])
+  def find_adoption
+    @adoption = Adoption.find(params[:id])
   end
 end

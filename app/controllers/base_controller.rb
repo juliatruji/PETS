@@ -6,7 +6,7 @@ class BaseController < ActionController::Base
   # protect_from_forgery except: :exception
   # before_action :set_cors_headers
 
-  before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   layout false
 
   def pundit_admin
