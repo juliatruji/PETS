@@ -4,7 +4,7 @@ class BaseController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_found
   # protect_from_forgery with: :null_session
   # protect_from_forgery except: :exception
-  # before_action :set_cors_headers
+  before_action :set_cors_headers
   skip_before_action :verify_authenticity_token
 
   layout false
@@ -28,13 +28,13 @@ class BaseController < ActionController::Base
 
   private
 
-  # def set_cors_headers
-  #   response.set_header "Access-Control-Allow-Origin", origin
-  # end
+  def set_cors_headers
+    response.set_header "Access-Control-Allow-Origin", origin
+  end
 
-  # def origin
-  #   request.headers["Origin"] || "*"
-  # end
+  def origin
+    request.headers["Origin"] || "*"
+  end
 
   def not_found(exception)
     Raven.capture_exception(exception)
