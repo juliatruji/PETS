@@ -1,5 +1,5 @@
-class AdoptersController < ActionController::Base
-  skip_before_action :verify_authenticity_token
+class AdoptersController < BaseController
+  before_action :ensure_and_set_current_admin
   before_action :find_adopter, only: [:show, :update]
 
   def index
