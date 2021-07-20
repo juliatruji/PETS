@@ -5,10 +5,10 @@ class CreatePets < ActiveRecord::Migration[6.1]
       t.string :race
       t.string :gender
       t.string :color
-      t.boolean :sterilized
+      t.boolean :sterilized, default: false
       t.string :size
       t.string :image
-      t.boolean :adoption_status
+      t.boolean :adoption_status, default: false
 
       t.timestamps
     end

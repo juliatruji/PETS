@@ -7,14 +7,6 @@ RSpec.describe 'adopters', type: :request do
     get 'Lista de adoptantes' do
       tags 'Adoptantes'
       parameter name: :q, in: :query, type: :string, description: 'Búsqueda por coicidencia'
-      parameter name: :from,
-                in: :query,
-                schema: { type: :string, format: :date },
-                description: 'Rango: Fecha Inicial'
-      parameter name: :to,
-                in: :query,
-                schema: { type: :string, format: :date },
-                description: 'Rango: Fecha Final'
       produces 'application/json'
       security [bearerAuth: []]
 

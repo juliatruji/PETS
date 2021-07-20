@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2021_05_29_021446) do
     t.string "race"
     t.string "gender"
     t.string "color"
-    t.boolean "sterilized"
+    t.boolean "sterilized", default: false
     t.string "size"
     t.string "image"
-    t.boolean "adoption_status"
+    t.boolean "adoption_status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

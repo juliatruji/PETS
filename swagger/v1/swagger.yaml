@@ -64,18 +64,6 @@ paths:
         description: Búsqueda por coicidencia
         schema:
           type: string
-      - name: from
-        in: query
-        schema:
-          type: string
-          format: date
-        description: 'Rango: Fecha Inicial'
-      - name: to
-        in: query
-        schema:
-          type: string
-          format: date
-        description: 'Rango: Fecha Final'
       security:
       - bearerAuth: []
       responses:
