@@ -6,6 +6,7 @@ RSpec.describe 'adoptions', type: :request do
   path '/adoptions' do
     get 'Lista de adopciones' do
       tags 'Adopciones'
+      parameter name: :q, in: :query, type: :string, description: 'Búsqueda por coicidencia'
       parameter name: :from,
                 in: :query,
                 schema: { type: :string, format: :date },
