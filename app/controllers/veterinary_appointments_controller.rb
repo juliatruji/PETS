@@ -1,7 +1,7 @@
 class VeterinaryAppointmentsController < BaseController
   include Rails::Pagination
   before_action :ensure_and_set_current_admin
-  before_action :find_veterinary_appointment, only: [:show, :update]
+  before_action :find_veterinary_appointment, only: [:show, :update, :destroy]
 
   def index
     veterinary_appointments = VeterinaryAppointment.all

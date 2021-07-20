@@ -1,7 +1,7 @@
 class PetsController < BaseController
   include Rails::Pagination
   before_action :ensure_and_set_current_admin
-  before_action :find_pet, only: [:show, :update]
+  before_action :find_pet, only: [:show, :update, :destroy]
 
   def index
     pets = Pet.all
