@@ -37,6 +37,7 @@ class AdoptionsController < BaseController
   def create
     adoption = Adoption.new(permit_params)
     if adoption.save
+      adoption.pet.update(adoption_status: true)
       render json: {
         status: "success",
         message: "Adoption created successfully",
