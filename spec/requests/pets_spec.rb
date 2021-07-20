@@ -125,4 +125,33 @@ RSpec.describe 'pets', type: :request do
       end
     end
   end
+
+  path '/pets/{id}' do
+    delete 'Eliminar perro' do
+      tags 'Perros'
+      parameter name: :id, in: :path, type: :string
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      response '200', 'perro eliminado' do
+        schema type: :object,
+               properties: {
+                 status: { type: :string, description: 'Estado' },
+                 message: { type: :string, description: 'Mensaje o descripción' },
+                 data: { '$ref' => '#/components/schemas/pet' }
+               }
+        run_test!
+      end
+
+      response '422', 'Error al eliminar perro' do
+        schema '$ref' => '#/components/schemas/unprocessable_entity'
+        run_test!
+      end
+
+      response '404', 'perro no encontrado' do
+        schema '$ref' => '#/components/schemas/not_found'
+        run_test!
+      end
+    end
+  end
 end

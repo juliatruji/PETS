@@ -59,6 +59,21 @@ class PetsController < BaseController
     end
   end
 
+  def destroy
+    if @pet.destroy
+      render json: {
+        status: 'success',
+        message: 'pet deleted successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(PetSerializer.new(@pet)).as_json,
+      }, status: :ok
+    else
+      render json: {
+        status: "error",
+        message: "An error occurred while deleted pet"
+      }, status: :unprocessable_entity
+    end
+  end
+
   def permit_params
     params.require(:pet).permit(
                   :name,

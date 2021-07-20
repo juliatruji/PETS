@@ -114,4 +114,32 @@ RSpec.describe 'veterinary_appointments', type: :request do
       end
     end
   end
+  path '/veterinary_appointments/{id}' do
+    delete 'Eliminar Vacuna' do
+      tags 'Citas al veterinario'
+      parameter name: :id, in: :path, type: :string
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      response '200', 'Vacuna eliminado' do
+        schema type: :object,
+               properties: {
+                 status: { type: :string, description: 'Estado' },
+                 message: { type: :string, description: 'Mensaje o descripción' },
+                 data: { '$ref' => '#/components/schemas/veterinary_appointment' }
+               }
+        run_test!
+      end
+
+      response '422', 'Error al eliminar Vacuna' do
+        schema '$ref' => '#/components/schemas/unprocessable_entity'
+        run_test!
+      end
+
+      response '404', 'Vacuna no encontrado' do
+        schema '$ref' => '#/components/schemas/not_found'
+        run_test!
+      end
+    end
+  end
 end

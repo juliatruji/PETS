@@ -44,6 +44,21 @@ class VeterinaryAppointmentsController < BaseController
     end
   end
 
+  def destroy
+    if @veterinary_appointment.destroy
+      render json: {
+        status: 'success',
+        message: 'vacinness deleted successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(VeterinaryAppointmentSerializer.new(@veterinary_appointment)).as_json,
+      }, status: :ok
+    else
+      render json: {
+        status: "error",
+        message: "An error occurred while deleted vacinness"
+      }, status: :unprocessable_entity
+    end
+  end
+
   def permit_params
     params.require(:veterinary_appointment).permit(
                   :image,
