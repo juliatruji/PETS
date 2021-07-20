@@ -196,6 +196,46 @@ paths:
                     age:
                       type: integer
                       description: Edad
+    delete:
+      summary: Eliminar Adoptante
+      tags:
+      - Adoptantes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Adopter eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado
+                  message:
+                    type: string
+                    description: Mensaje o descripción
+                  data:
+                    "$ref": "#/components/schemas/adopter"
+        '422':
+          description: Error al eliminar Adopter
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unprocessable_entity"
+        '404':
+          description: Adopter no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
   "/adoptions":
     get:
       summary: Lista de adopciones

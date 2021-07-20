@@ -1,7 +1,7 @@
 class AdoptersController < BaseController
   include Rails::Pagination
   before_action :ensure_and_set_current_admin
-  before_action :find_adopter, only: [:show, :update]
+  before_action :find_adopter, only: [:show, :update, :destroy]
 
   def index
     adopters = Adopter.all
@@ -54,6 +54,21 @@ class AdoptersController < BaseController
       render json: {
         status: "error",
         message: "An error occurred while updating adopter"
+      }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @adopter.destroy
+      render json: {
+        status: 'success',
+        message: 'adopter deleted successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(AdopterSerializer.new(@adopter)).as_json,
+      }, status: :ok
+    else
+      render json: {
+        status: "error",
+        message: "An error occurred while deleted adopter"
       }, status: :unprocessable_entity
     end
   end
