@@ -13,5 +13,5 @@
 #
 class Adopter < ApplicationRecord
   has_many :adoptions, dependent: :destroy
-
+  has_many :pets, through: :adoptions, dependent: :destroy
 end

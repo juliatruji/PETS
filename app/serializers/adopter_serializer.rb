@@ -7,4 +7,5 @@ class AdopterSerializer < ActiveModel::Serializer
              :age,
              :created_at,
              :updated_at
+  has_one :pets, serializer: PetSerializer
 end
