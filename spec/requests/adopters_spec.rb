@@ -121,4 +121,32 @@ RSpec.describe 'adopters', type: :request do
       end
     end
   end
+  path '/adopters/{id}' do
+    delete 'Eliminar Adoptante' do
+      tags 'Adoptantes'
+      parameter name: :id, in: :path, type: :string
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      response '200', 'Adopter eliminado' do
+        schema type: :object,
+               properties: {
+                 status: { type: :string, description: 'Estado' },
+                 message: { type: :string, description: 'Mensaje o descripción' },
+                 data: { '$ref' => '#/components/schemas/adopter' }
+               }
+        run_test!
+      end
+
+      response '422', 'Error al eliminar Adopter' do
+        schema '$ref' => '#/components/schemas/unprocessable_entity'
+        run_test!
+      end
+
+      response '404', 'Adopter no encontrado' do
+        schema '$ref' => '#/components/schemas/not_found'
+        run_test!
+      end
+    end
+  end
 end
