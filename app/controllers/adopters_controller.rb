@@ -5,6 +5,20 @@ class AdoptersController < BaseController
 
   def index
     adopters = Adopter.all
+
+    search = params[:q]
+    if search.present?
+      pattern = "%#{search.strip}%"
+      adopters = adopters.where(
+        'adopters.name ILIKE :pattern
+        OR adopters.dni ILIKE :pattern
+        OR adopters.address ILIKE :pattern
+        OR adopters.cel ILIKE :pattern',
+        pattern: pattern
+      )
+    end
+    adopters = adopters.order(created_at: :desc)
+
     paginate_items = paginate adopters, per_page: params[:per_page]
     render json: paginate_items, each_serializer: AdopterSerializer
   end
