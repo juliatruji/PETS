@@ -5,6 +5,20 @@ class PetsController < BaseController
 
   def index
     pets = Pet.all
+    pets = pets.where(adoption_status: true) if params[:adoption_status].present? && params[:adoption_status] == "true"
+    pets = pets.where(sterilized: true) if params[:sterilized].present? && params[:sterilized] == "true"
+    search = params[:q]
+    if search.present?
+      pattern = "%#{search.strip}%"
+      pets = pets.where(
+        'pets.name ILIKE :pattern
+        OR pets.race ILIKE :pattern
+        OR pets.gender ILIKE :pattern
+        OR pets.color ILIKE :pattern
+        OR pets.size ILIKE :pattern',
+        pattern: pattern
+      )
+    end
     paginate_items = paginate pets, per_page: params[:per_page]
     render json: paginate_items, each_serializer: PetSerializer
   end

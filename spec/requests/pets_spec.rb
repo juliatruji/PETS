@@ -6,6 +6,9 @@ RSpec.describe 'pets', type: :request do
   path '/pets' do
     get 'Lista de perros' do
       tags 'Perros'
+      parameter name: :q, in: :query, type: :string, description: 'Búsqueda por coicidencia'
+      parameter name: :adoption_status, in: :query, type: :boolean, description: 'Adoptados'
+      parameter name: :sterilized, in: :query, type: :boolean, description: 'Esterilizados'
       parameter name: :from,
                 in: :query,
                 schema: { type: :string, format: :date },

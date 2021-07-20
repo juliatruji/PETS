@@ -363,6 +363,21 @@ paths:
       tags:
       - Perros
       parameters:
+      - name: q
+        in: query
+        description: Búsqueda por coicidencia
+        schema:
+          type: string
+      - name: adoption_status
+        in: query
+        description: Adoptados
+        schema:
+          type: boolean
+      - name: sterilized
+        in: query
+        description: Esterilizados
+        schema:
+          type: boolean
       - name: from
         in: query
         schema:
