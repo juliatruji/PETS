@@ -19,6 +19,7 @@ class PetsController < BaseController
         pattern: pattern
       )
     end
+    pets = pets.order(created_at: :desc)
     paginate_items = paginate pets, per_page: params[:per_page]
     render json: paginate_items, each_serializer: PetSerializer
   end
