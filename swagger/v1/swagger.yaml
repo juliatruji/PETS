@@ -572,6 +572,46 @@ paths:
                 pet[adoption_status]:
                   type: boolean
                   description: Adoptado?
+    delete:
+      summary: Eliminar perro
+      tags:
+      - Perros
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: perro eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado
+                  message:
+                    type: string
+                    description: Mensaje o descripción
+                  data:
+                    "$ref": "#/components/schemas/pet"
+        '422':
+          description: Error al eliminar perro
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unprocessable_entity"
+        '404':
+          description: perro no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
   "/veterinary_appointments":
     get:
       summary: Lista de citas al veterinario
@@ -703,6 +743,46 @@ paths:
                 veterinary_appointment[date]:
                   type: date
                   description: Fecha de la cita
+    delete:
+      summary: Eliminar Vacuna
+      tags:
+      - Citas al veterinario
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Vacuna eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Estado
+                  message:
+                    type: string
+                    description: Mensaje o descripción
+                  data:
+                    "$ref": "#/components/schemas/veterinary_appointment"
+        '422':
+          description: Error al eliminar Vacuna
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unprocessable_entity"
+        '404':
+          description: Vacuna no encontrado
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
 servers:
 - url: http://localhost:3000
   description: Servidor de Desarrollo
