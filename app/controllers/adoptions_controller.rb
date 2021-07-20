@@ -5,6 +5,27 @@ class AdoptionsController < BaseController
 
   def index
     adoptions = Adoption.all
+    # adoptions = adoptions.where(adoption_status: true) if params[:adoption_status].present? && params[:adoption_status] == "true"
+    # adoptions = adoptions.where(sterilized: true) if params[:sterilized].present? && params[:sterilized] == "true"
+    search = params[:q]
+    if search.present?
+      pattern = "%#{search.strip}%"
+      adoptions = adoptions.left_outer_joins(:pet, :adopter, :admin).where(
+        'pets.name ILIKE :pattern
+        OR pets.race ILIKE :pattern
+        OR pets.gender ILIKE :pattern
+        OR pets.color ILIKE :pattern
+        OR pets.size ILIKE :pattern
+        OR adopters.name ILIKE :pattern
+        OR adopters.dni ILIKE :pattern
+        OR adopters.address ILIKE :pattern
+        OR adopters.cel ILIKE :pattern
+        OR admins.name ILIKE :pattern
+        OR admins.user ILIKE :pattern',
+        pattern: pattern
+      ).distinct
+    end
+    adoptions = adoptions.order(created_at: :desc)
     paginate_items = paginate adoptions, per_page: params[:per_page]
     render json: paginate_items, each_serializer: AdoptionSerializer
   end

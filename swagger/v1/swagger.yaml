@@ -202,6 +202,11 @@ paths:
       tags:
       - Adopciones
       parameters:
+      - name: q
+        in: query
+        description: Búsqueda por coicidencia
+        schema:
+          type: string
       - name: from
         in: query
         schema:
