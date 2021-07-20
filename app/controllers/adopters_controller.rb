@@ -44,7 +44,7 @@ class AdoptersController < BaseController
   end
 
   def update
-    if @adopter.update(permit_params)
+    if @adopter.pets.blank? && @adopter.update(permit_params)
       render json: {
         status: 'success',
         message: 'adopter updated successfully',

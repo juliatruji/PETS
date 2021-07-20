@@ -60,7 +60,7 @@ class PetsController < BaseController
   end
 
   def destroy
-    if @pet.destroy
+    if @pet.adoption_status == false && @pet.destroy
       render json: {
         status: 'success',
         message: 'pet deleted successfully',
