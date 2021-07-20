@@ -8,6 +8,7 @@ module AdopterSchema
         address: { type: 'string', description: 'Dirección del adoptante' },
         cel: { type: 'string', description: 'Celular del adoptante' },
         age: { type: 'integer', description: 'Edad' },
+        count_pets: { type: 'integer', description: 'Cantidad de Perros Adoptados' },
         created_at: { type: :string, format: 'date-time', description: 'Fecha de creación' },
         updated_at: { type: :string, format: 'date-time', description: 'Fecha de actualización' },
         pets: {

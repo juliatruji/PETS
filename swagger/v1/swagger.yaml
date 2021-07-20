@@ -836,6 +836,9 @@ components:
         age:
           type: integer
           description: Edad
+        count_pets:
+          type: integer
+          description: Cantidad de Perros Adoptados
         created_at:
           type: string
           format: date-time
