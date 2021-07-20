@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
   resources :adoptions, only: [:index, :create, :update, :show]
   resources :adopters, only: [:index, :create, :update, :show, :destroy]
-  resources :pets, only: [:index, :create, :update, :show]
+  resources :pets, only: [:index, :create, :update, :show, :destroy]
   resources :logins, only: [:create]
-  resources :veterinary_appointments, only: [:index, :create, :update, :show]
+  resources :veterinary_appointments, only: [:index, :create, :update, :show, :destroy]
 end
