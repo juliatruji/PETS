@@ -1,0 +1,36 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  Exclude:
+    - "app/admin/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "config.ru"
+inherit_from:
+  - https://relaxed.ruby.style/rubocop.yml
+Layout/DotPosition:
+  Enabled: true
+  EnforcedStyle: leading
+Layout/AlignHash:
+  Exclude:
+    - "spec/**/*"
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"
+    - "spec/**/*"
+Style/MethodCallWithArgsParentheses:
+  Exclude:
+    - "spec/**/*"
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/routes/**/*"
+RSpec/ImplicitSubject:
+  Exclude:
+    - "spec/routes/**/*"
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

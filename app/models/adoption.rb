@@ -13,4 +13,5 @@
 class Adoption < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter
+  belongs_to :admin
 end

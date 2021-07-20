@@ -4,6 +4,7 @@ class AdoptionSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at
 
+  belongs_to :admin, serializer: AdminSerializer
   belongs_to :pet, serializer: PetSerializer
   belongs_to :adopter, serializer: AdopterSerializer
 end
