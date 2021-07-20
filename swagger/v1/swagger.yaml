@@ -844,6 +844,12 @@ components:
           type: string
           format: date-time
           description: Fecha de actualización
+        pets:
+          type: array
+          description: Lista de Perros Adoptados
+          items:
+            pet:
+              "$ref": "#/components/schemas/pet"
       required:
       - id
     pet:
