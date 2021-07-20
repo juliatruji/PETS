@@ -14,7 +14,7 @@ module AdopterSchema
           type: 'array',
           description: 'Lista de Perros Adoptados',
           items: {
-            pet: { '$ref': '#/components/schemas/pet' },
+            '$ref': '#/components/schemas/pet',
           }
         },
       },
