@@ -44,7 +44,7 @@ class AdoptersController < BaseController
   end
 
   def update
-    if @adopter.pets.blank? && @adopter.update(permit_params)
+    if @adopter.update(permit_params)
       render json: {
         status: 'success',
         message: 'adopter updated successfully',
@@ -59,7 +59,7 @@ class AdoptersController < BaseController
   end
 
   def destroy
-    if @adopter.destroy
+    if @adopter.pets.blank? && @adopter.destroy
       render json: {
         status: 'success',
         message: 'adopter deleted successfully',
