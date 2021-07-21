@@ -26,8 +26,8 @@ development:
   encoding: unicode 
   database: pet
   pool: 5
-  username: juliet
-  password:
+  username: whelming
+  password: 1992whelming
   <<: *default
   database: pet
 
