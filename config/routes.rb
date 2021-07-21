@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :adopters, only: [:index, :create, :update, :show, :destroy]
   resources :pets, only: [:index, :create, :update, :show, :destroy]
   resources :logins, only: [:create]
+  resources :statistics, only: [:index]
   resources :veterinary_appointments, only: [:index, :create, :update, :show, :destroy]
 end
