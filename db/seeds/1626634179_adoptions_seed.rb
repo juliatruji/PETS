@@ -1,4 +1,4 @@
-adopters = Adopter.all.sample(75)
+adopters = Adopter.all.sample(66)
 adopters.each do |adopter|
   pet = Pet.where(adoption_status: false).sample
   adopter.adoptions.create(

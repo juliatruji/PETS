@@ -1,4 +1,4 @@
-(1..500).each do |id|
+(1..166).each do |id|
   Pet.create(
     name: Faker::Artist.name,
     race: ["Shitzu", "Snauzer", "jack russell terrier", "pastor alemán", "fox terrier toy", "yorkshire terrier", "chihuahua", "pastor alemán", "akita inu", "labrador retriever", "bulldog", "bóxer"].sample,

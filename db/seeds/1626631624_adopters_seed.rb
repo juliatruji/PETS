@@ -1,4 +1,4 @@
-(1..100).each do |id|
+(1..88).each do |id|
   Adopter.create(
     name: Faker::Name.name,
     dni: Faker::IDNumber.valid,
