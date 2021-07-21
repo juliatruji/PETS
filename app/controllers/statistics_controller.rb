@@ -30,11 +30,11 @@ class StatisticsController < BaseController
       adopters: {
         total: adopters.size,
         ages: {
-          less_twenty: adopters.where(age: 0..20),
-          twenty_thirty: adopters.where(age: 21..30),
-          thirty_forty: adopters.where(age: 31..40),
-          forty_fifty: adopters.where(age: 41..50),
-          fifty_more: adopters.where(age: 51..100),
+          less_twenty: adopters.where(age: 0..20).size,
+          twenty_thirty: adopters.where(age: 21..30).size,
+          thirty_forty: adopters.where(age: 31..40).size,
+          forty_fifty: adopters.where(age: 41..50).size,
+          fifty_more: adopters.where(age: 51..100).size,
         }
       }
     }
