@@ -1,8 +1,6 @@
-adopters = Adopter.all.first(5)
+adopters = Adopter.all.sample(75)
 adopters.each do |adopter|
-
-pet = Pet.where(adoption_status: false).sample
-
+  pet = Pet.where(adoption_status: false).sample
   adopter.adoptions.create(
     date: Faker::Date.between(from: '2019-01-23', to: '2021-07-25'),
     pet: pet,
