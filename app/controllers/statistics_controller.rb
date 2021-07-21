@@ -5,13 +5,14 @@ class StatisticsController < BaseController
     pets = Pet.all
     adopters = Adopter.all
     adoptions = Adoption.all
+    vaccinnes = VeterinaryAppointment.all
 
     render json: {
       stats: {
         adopters: adopters.size,
         adoptions: adoptions.size,
         pets: pets.size,
-        vaccinnes: 541
+        vaccinnes: vaccinnes.size
       },
       pets: {
         total: pets.size,
@@ -24,6 +25,16 @@ class StatisticsController < BaseController
           medium: pets.where(size: "Mediano").size,
           large: pets.where(size: "Grande").size,
           extra_large: pets.where(size: "Gigante").size
+        }
+      },
+      adopters: {
+        total: adopters.size,
+        ages: {
+          less_twenty: adopters.where(age: 0..20),
+          twenty_thirty: adopters.where(age: 21..30),
+          thirty_forty: adopters.where(age: 31..40),
+          forty_fifty: adopters.where(age: 41..50),
+          fifty_more: adopters.where(age: 51..100),
         }
       }
     }

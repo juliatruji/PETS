@@ -38,7 +38,23 @@ RSpec.describe 'statistics', type: :request do
                 }
               },
             }
-          }
+          },
+          adopters: {
+            type: 'object',
+            properties: {
+              total: { type: :integer, description: 'Conteo Total' },
+              ages: {
+                type: 'object',
+                properties: {
+                  less_twenty: { type: :integer, description: 'Menos de 20' },
+                  twenty_thirty: { type: :integer, description: '20 a 30' },
+                  thirty_forty: { type: :integer, description: '30 a 40' },
+                  forty_fifty: { type: :integer, description: '40 a 50' },
+                  fifty_more: { type: :integer, description: '50 a más' }
+                }
+              },
+            }
+          },
         }
         run_test!
       end
