@@ -33,13 +33,13 @@ class VeterinaryAppointmentsController < BaseController
     if @veterinary_appointment.update(permit_params)
       render json: {
         status: 'success',
-        message: 'pet updated successfully'
-        #data: ActiveModelSerializers::Adapter::Json.new(VeterinaryAppointmentSerializer.new(veterinary_appointment)).as_json,
+        message: 'Veterinary updated successfully',
+        data: ActiveModelSerializers::Adapter::Json.new(VeterinaryAppointmentSerializer.new(@veterinary_appointment)).as_json,
       }, status: :ok
     else
       render json: {
         status: "error",
-        message: "An error occurred while updating pet"
+        message: "An error occurred while updating Veterinary"
       }, status: :unprocessable_entity
     end
   end
