@@ -12,5 +12,5 @@
 #
 class VeterinaryAppointment < ApplicationRecord
   belongs_to :pet
-  mount_uploader :image, VaccineUploader
+  mount_uploader :image, VeterinaryAppointmentUploader
 end

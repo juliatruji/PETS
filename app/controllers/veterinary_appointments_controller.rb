@@ -4,7 +4,7 @@ class VeterinaryAppointmentsController < BaseController
   before_action :find_veterinary_appointment, only: [:show, :update, :destroy]
 
   def index
-    veterinary_appointments = VeterinaryAppointment.all
+    veterinary_appointments = VeterinaryAppointment.all.order(created_at: :desc)
     paginate_items = paginate veterinary_appointments, per_page: params[:per_page]
     render json: paginate_items, each_serializer: VeterinaryAppointmentSerializer
   end

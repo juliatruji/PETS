@@ -14,5 +14,5 @@ class VeterinaryAppointmentSerializer < ActiveModel::Serializer
       url: object.image.url,
       name: object.image_identifier
     }
-   end
+  end
 end
